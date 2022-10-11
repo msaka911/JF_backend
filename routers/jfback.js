@@ -184,6 +184,14 @@ app.get('/claimform', (req, res) => {
         res.setHeader('Content-Disposition', 'attachment; filename=JFE_claimform.pdf');
         file.pipe(res)
       }
+    else if(policy_number.toString().substring(0,4)==="TOP"){
+        var file = fs.createReadStream('./files/TOP_claimform.pdf');
+        var stat = fs.statSync('./files/TOP_claimform.pdf');
+        res.setHeader('Content-Length', stat.size);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=TOP_claimform.pdf');
+        file.pipe(res)
+      }
     else if(policy_number.toString().substring(0,3)==="JES"){
           var file = fs.createReadStream('./files/JES_claimform.pdf');
           var stat = fs.statSync('./files/JES_claimform.pdf');
